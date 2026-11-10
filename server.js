@@ -1,4 +1,4 @@
-const http = require('http');
+﻿const http = require('http');
 const fs = require('fs');
 const path = require('path');
 
@@ -36,5 +36,5 @@ const server = http.createServer((req, res) => {
 });
 
 server.listen(PORT, () => {
-  console.log(`Servidor de Huellitas Callejeras activo en: http://localhost:${PORT}`);
+  console.log(`Servidor de Fundación Animales BAQ activo en: http://localhost:${PORT}`);
 });

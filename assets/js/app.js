@@ -1,25 +1,30 @@
-/**
- * HUELLITAS CALLEJERAS BARRANQUILLA - LÓGICA PRINCIPAL (app.js)
+﻿/**
+ * FUNDACIÓN ANIMALES BAQ - LÓGICA PRINCIPAL (app.js)
  * Interactividad ligera, filtros de adopción, modales y contacto por WhatsApp.
  */
 
+let PETS_LIMIT = 6;
+let petsExpanded = false;
+let currentFilter = 'todos';
+
 const FOUNDATION_CONFIG = {
-  name: "Huellitas Callejeras Barranquilla",
+  name: "FUNDACIÓN ANIMALES BAQ",
   city: "Barranquilla, Atlántico, Colombia",
   whatsappNumber: "573001234567", // Número de WhatsApp oficial
-  whatsappBaseMessage: "Hola, quiero información para adoptar un peludo de Huellitas Callejeras",
-  email: "adopciones@huellitascallejerasbaq.org",
+  whatsappBaseMessage: "Hola, quiero información para adoptar un peludo de Fundación Animales BAQ",
+  email: "adopciones@fundacionanimalesbaq.org",
   donations: {
     nequi: "300 123 4567",
     daviplata: "300 123 4567",
     bancolombiaAhorros: "782-000123-45",
-    titular: "Fundación Huellitas Callejeras BAQ"
+    titular: "Fundación Fundación Animales BAQ BAQ"
   }
 };
 
 document.addEventListener('DOMContentLoaded', () => {
-  renderPetsGallery('todos');
+  renderPetsGallery('todos', PETS_LIMIT);
   initFilterButtons();
+  initTogglePets();
   initAdoptionModal();
   initDonationCopyButtons();
   initMobileNavigation();
@@ -30,7 +35,7 @@ document.addEventListener('DOMContentLoaded', () => {
 /**
  * 1. Renderizado Dinámico de la Galería de Peludos
  */
-function renderPetsGallery(filter = 'todos') {
+function renderPetsGallery(filter = 'todos', limit = null) {
   const container = document.getElementById('pets-grid');
   if (!container || typeof PETS_DATA === 'undefined') return;
 
@@ -47,10 +52,17 @@ function renderPetsGallery(filter = 'todos') {
         <p class="text-sm mt-1">¡Pero puedes postularte para ser hogar de paso y salvar vidas!</p>
       </div>
     `;
+    const toggleBtn = document.getElementById('toggle-pets-btn');
+    if (toggleBtn) toggleBtn.classList.add('hidden');
     return;
   }
 
-  filteredPets.forEach(pet => {
+  const showAll = petsExpanded || !limit;
+  const displayPets = showAll ? filteredPets : filteredPets.slice(0, PETS_LIMIT);
+
+  container.innerHTML = '';
+
+  displayPets.forEach(pet => {
     const card = document.createElement('article');
     card.className = "pet-card bg-white rounded-3xl overflow-hidden border border-[#F3E8E2] shadow-sm flex flex-col justify-between group";
     
@@ -70,7 +82,7 @@ function renderPetsGallery(filter = 'todos') {
     card.innerHTML = `
       <div>
         <!-- Imagen del Peludo con Badges -->
-        <div class="relative h-64 sm:h-72 w-full overflow-hidden bg-[#F7F3EC]">
+          <div class="relative h-48 sm:h-56 lg:h-60 w-full overflow-hidden bg-[#F7F3EC]">
           <img 
             src="${pet.image}" 
             alt="Foto de ${pet.name}, ${pet.type} rescatado en Barranquilla" 
@@ -78,6 +90,7 @@ function renderPetsGallery(filter = 'todos') {
             loading="lazy" 
             width="400" 
             height="300"
+            onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%27400%27 height=%27300%27 viewBox=%270 0 400 300%27%3E%3Crect width=%27400%27 height=%27300%27 fill=%27%23F7F3EC%27/%3E%3Ctext x=%27200%27 y=%27150%27 font-size=%2718%27 fill=%27%23968375%27 text-anchor=%27middle%27 dominant-baseline=%27middle%27 font-family=%27sans-serif%27%3EImagen no disponible%3C/text%3E%3C/svg%3E'"
           >
           <div class="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-60"></div>
           
@@ -138,6 +151,18 @@ function renderPetsGallery(filter = 'todos') {
 
     container.appendChild(card);
   });
+
+  // Mostrar/ocultar botón Ver más / Ver menos
+  const toggleBtn = document.getElementById('toggle-pets-btn');
+  if (toggleBtn) {
+    if (filteredPets.length <= PETS_LIMIT) {
+      toggleBtn.classList.add('hidden');
+    } else {
+      toggleBtn.classList.remove('hidden');
+      toggleBtn.textContent = petsExpanded ? 'Ver menos' : 'Ver más';
+      toggleBtn.setAttribute('aria-expanded', petsExpanded);
+    }
+  }
 }
 
 /**
@@ -155,8 +180,23 @@ function initFilterButtons() {
       btn.classList.remove('bg-white', 'text-[#4A3B32]', 'border', 'border-[#F3E8E2]');
 
       const filter = btn.getAttribute('data-filter');
-      renderPetsGallery(filter);
+      currentFilter = filter;
+      petsExpanded = false;
+      renderPetsGallery(filter, PETS_LIMIT);
     });
+  });
+}
+
+/**
+ * 2.5. Botón Ver Más / Ver Menos de la Galería
+ */
+function initTogglePets() {
+  const btn = document.getElementById('toggle-pets-btn');
+  if (!btn) return;
+
+  btn.addEventListener('click', () => {
+    petsExpanded = !petsExpanded;
+    renderPetsGallery(currentFilter, PETS_LIMIT);
   });
 }
 
@@ -213,7 +253,7 @@ function openAdoptionModal(petId) {
 
   // Botón directo a WhatsApp con mensaje personalizado del peludo
   const waBtn = document.getElementById('modal-whatsapp-btn');
-  const waMsg = `¡Hola Huellitas Callejeras! Me enamoré de ${pet.name} (${pet.type}, ${pet.age}) y deseo iniciar el proceso de adopción responsable en Barranquilla. ¿Me cuentan los pasos?`;
+  const waMsg = `¡Hola Fundación Animales BAQ! Me enamoré de ${pet.name} (${pet.type}, ${pet.age}) y deseo iniciar el proceso de adopción responsable en Barranquilla. ¿Me cuentan los pasos?`;
   waBtn.href = `https://wa.me/${FOUNDATION_CONFIG.whatsappNumber}?text=${encodeURIComponent(waMsg)}`;
 
   // Botón para preseleccionar en el formulario de la página
@@ -335,7 +375,7 @@ function initAdoptionForm() {
       `🏡 *Tipo de vivienda:* ${homeType}\n` +
       `💬 *Detalles del hogar:* ${experience}\n` +
       `------------------------------------\n` +
-      `¡Hola equipo de Huellitas Callejeras! Acabo de completar el formulario y quiero coordinar la entrevista.`;
+      `¡Hola equipo de Fundación Animales BAQ! Acabo de completar el formulario y quiero coordinar la entrevista.`;
 
     showToast('¡Gracias por tu amor! Abriendo WhatsApp para continuar tu postulación...', 'success');
 

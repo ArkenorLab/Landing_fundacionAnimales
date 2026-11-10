@@ -1,5 +1,5 @@
-/**
- * DATOS DE PELUDOS EN ADOPCIÓN - HUELLITAS CALLEJERAS BARRANQUILLA
+﻿/**
+ * DATOS DE PELUDOS EN ADOPCIÓN - FUNDACIÓN ANIMALES BAQ
  * Cada peludo cuenta con historia, edad estimada, temperamento y estado de salud.
  */
 
@@ -68,7 +68,7 @@ const PETS_DATA = [
     age: "1 año",
     size: "Pequeña (3.5 kg)",
     locationRescued: "Rescatada cerca al Gran Malecón",
-    image: "https://images.unsplash.com/photo-1573865526739-10659fec78a5?q=80&w=800&auto=format&fit=crop",
+    image: "https://images.unsplash.com/photo-1518020382113-a7e8dd38782e?q=80&w=800&auto=format&fit=crop",
     story: "Luna tiene unos ojazos que derriten a cualquiera. Es tranquila, prudente y le encanta frotar su cabecita contra tus piernas mientras trabajas en el computador.",
     tags: ["Silenciosa", "Cariñosa", "Compañera de Teletrabajo"],
     health: ["Esterilizada", "Vacunas al día", "Desparasitada"],
@@ -87,6 +87,76 @@ const PETS_DATA = [
     tags: ["Adulto Sabio", "Paseos Cortos", "Paz Total"],
     health: ["Esterilizado", "Chequeo geriátrico al día", "Dentadura limpia"],
     idealHome: "Adultos mayores o personas tranquilas que deseen un compañero de sofá incondicional."
+  },
+  {
+    id: "nube",
+    name: "Nube",
+    type: "perro",
+    gender: "Hembra",
+    age: "8 meses",
+    size: "Mediana (12 kg)",
+    locationRescued: "Rescatada en Barrio Montecito",
+    image: "https://images.unsplash.com/photo-1583337130417-3346a1be7dee?q=80&w=800&auto=format&fit=crop",
+    story: "Nube es una perrita blanca y esponjosa como una nube. Llegó temblando de frío en una noche de lluvia. Es muy dulce, sociable con otros perros y ama que le rascen detrás de las orejas.",
+    tags: ["Esponjosa", "Dulce", "Sociable"],
+    health: ["Esterilizada", "Vacunas al día", "Desparasitada"],
+    idealHome: "Familia con niños o persona que le dé mucho cariño y un lugar cálido para dormir."
+  },
+  {
+    id: "thor",
+    name: "Thor",
+    type: "perro",
+    gender: "Macho",
+    age: "3 años",
+    size: "Grande (25 kg)",
+    locationRescued: "Rescatado en Barrio Los Olivos",
+    image: "https://images.unsplash.com/photo-1516035060371-86b6981d6302?q=80&w=800&auto=format&fit=crop",
+    story: "Thor es un perro fuerte, noble y muy protector. Fue rescatado de una situación de maltrato, pero no guarda rencor. Le encanta caminar, jugar a buscar la pelota y cuidar a su familia.",
+    tags: ["Fuerte", "Protectedor", "Obediente"],
+    health: ["Esterilizado", "Vacunado contra rabia", "Microchip"],
+    idealHome: "Casa con patio seguro y familia activa que disfrute de paseos largos."
+  },
+  {
+    id: "michi",
+    name: "Michi",
+    type: "gato",
+    gender: "Macho",
+    age: "1 año",
+    size: "Pequeño (4 kg)",
+    locationRescued: "Rescatado en Calle 84",
+    image: "https://images.unsplash.com/photo-1516323267491-a6b0b3f674b2?q=80&w=800&auto=format&fit=crop",
+    story: "Michi es un gatito travieso y curioso. Le encantan las cajas de cartón, los rayos de sol y jugar con cualquier cordel que encuentre. Es muy limpio y ronronea fuerte cuando lo acaricias.",
+    tags: ["Travieso", "Curioso", "Limpio"],
+    health: ["Esterilizado", "Triple felina al día", "Negativo VIF/FeLV"],
+    idealHome: "Apartamento con mallas de seguridad o casa cerrada, sin acceso libre a la calle."
+  },
+  {
+    id: "pelusa",
+    name: "Pelusa",
+    type: "gato",
+    gender: "Hembra",
+    age: "9 meses",
+    size: "Pequeña (3.2 kg)",
+    locationRescued: "Rescatada en Barrio El Prado",
+    image: "https://images.unsplash.com/photo-1518791841237-8f84e00b5654?q=80&w=800&auto=format&fit=crop",
+    story: "Pelusa es una gatica gris muy tranquila y mimosa. Le encanta dormir sobre el regazo de su humano y mirar por la ventana los pájaros. Es ideal para hogares tranquilos.",
+    tags: ["Tranquila", "Mimosa", "Silenciosa"],
+    health: ["Esterilizada", "Vacunas al día", "Desparasitada"],
+    idealHome: "Persona mayor o hogar tranquilo que le dé mimos y un lugar soleado para descansar."
+  },
+  {
+    id: "firulais",
+    name: "Firulais",
+    type: "perro",
+    gender: "Macho",
+    age: "2 años",
+    size: "Mediano (16 kg)",
+    locationRescued: "Rescatado en Vía al Mar",
+    image: "https://images.unsplash.com/photo-1517849845537-4d257902454a?q=80&w=800&auto=format&fit=crop",
+    story: "Firulais es un perro alegre, juguetón y lleno de energía. Le encanta el agua, correr por la playa y hacer amigos en el parque. Es ideal para familias con niños que tengan tiempo para jugar con él.",
+    tags: ["Juguetón", "Energético", "Apto para Niños"],
+    health: ["Esterilizado", "Esquema de vacunas completo", "Desparasitado"],
+    idealHome: "Familia activa con patio o cerca de zonas verdes para pasear y jugar."
   }
 ];
 
